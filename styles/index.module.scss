@@ -1,0 +1,58 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  height: 100vh;
+  overflow: hidden;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+    margin: 50px;
+
+    color: #2A5C70;
+
+    h1 {
+      font-size: 4em;
+      font-weight: normal;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    div.buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    height: 100%;
+
+    transform: translateX(1px)
+  }
+
+  .concealer {
+    position: absolute;
+    top: 0;
+    left: 98%;
+    width: 100vh;
+    height: 150vw;
+    background: blue;
+    z-index: 5;
+
+    transition: transform .1s;
+
+    transform-origin: top left;
+    transform: rotate(90deg);
+  }
+}
