@@ -1,0 +1,17 @@
+.button_light {
+  border: 4px solid #2A5C70;
+  background-color: rgba(255, 255, 255, 0);
+  color: #2A5C70;
+
+  font-family: "Gilroy";
+  font-weight: bold;
+  padding: 6px 56px;
+  font-size: 1.1em;
+  cursor: pointer;
+
+  transition: .1s all;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

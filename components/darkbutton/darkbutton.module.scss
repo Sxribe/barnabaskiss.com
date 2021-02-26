@@ -1,0 +1,17 @@
+.button_dark {
+  border: none;
+  background-color: #2A5C70;
+  color: #FFFFFF;
+
+  font-family: "Gilroy";
+  font-weight: bold;
+  padding: 10px 60px;
+  font-size: 1.1em;
+  cursor: pointer;
+
+  transition: .1s all;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
