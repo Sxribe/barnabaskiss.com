@@ -1,12 +1,19 @@
 import styles from "./nav.module.scss"
 
 interface NavProps {
-  logoStyle: "light" | "dark",
-  hamburgerSyle: "light" | "dark"
+  logoStyle: "light" | "dark";
+  hamburgerSyle: "light" | "dark";
+  hamburgerPressed: ((event: React.MouseEvent<HTMLImageElement>) => void) | undefined;
 }
 
 export default function Nav(props: NavProps) {
   const { logoStyle, hamburgerSyle } = props;
+
+  function clicked(e: React.MouseEvent<HTMLImageElement>) {
+    if (props.hamburgerPressed !== undefined) {
+      props.hamburgerPressed(e);
+    }
+  }
 
   return (
     <nav className={styles.nav}>
@@ -20,6 +27,7 @@ export default function Nav(props: NavProps) {
         <img
           src={hamburgerSyle === "light" ? "/assets/hamburger-light.svg" : "/assets/hamburger-dark.svg"}
           alt="Menu"
+          onClick={clicked}
         />
       </div>
     </nav>
