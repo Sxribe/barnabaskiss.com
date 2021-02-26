@@ -1,0 +1,25 @@
+.nav {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  right: 50px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  img {
+    height: 60px;
+    display: block;
+  }
+}
+
+.right {
+  img {
+    cursor: pointer;
+    display: block;
+  }
+}
