@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-
 import Head from "next/head";
 import DarkButton from "../components/darkbutton/darkbutton";
 import LightButton from "../components/lightbutton/lightbutton";
@@ -12,8 +11,8 @@ import NavCover from "../components/navcover/navcover";
 export default function Home() {
   const width = useWindowWidth();
 
-  const [sliderOpen, setSliderOpen] = useState<boolean>(true);
-  const [navCoverOpen, setNavCoverOpen] = useState<boolean>(true);
+  const [sliderOpen, setSliderOpen] = useState<boolean>(false);
+  const [navCoverOpen, setNavCoverOpen] = useState<boolean>(false);
   const [logoColor, setLogoColor] = useState<"light"|"dark">("dark");
   const sidebarRef = useRef<HTMLImageElement>(null!)
 
