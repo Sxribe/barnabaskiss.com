@@ -6,37 +6,23 @@ import LightButton from "../components/lightbutton/lightbutton";
 import Nav from "../components/nav/nav";
 import styles from "../styles/index.module.scss";
 import useWindowWidth from "../hooks/useWindowWidth";
+import Concealer from "../components/concealer/concealer";
 
 export default function Home() {
-  
   const width = useWindowWidth();
 
   const [sliderOpen, setSliderOpen] = useState<boolean>(false);
   const [logoColor, setLogoColor] = useState<"light"|"dark">("dark");
   const sidebarRef = useRef<HTMLImageElement>(null!)
-  const concealerRef= useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      let sidebarHeight = sidebarRef.current.clientHeight;
-
-      // Proportional equation to SVG top-width:height
-      let correctedOffset = Math.round((106 * sidebarHeight) / 1005.1) - 1;
-      concealerRef.current.style.left = `${window.innerWidth - correctedOffset}px`;
-    }
-  }, [width])
-
-  useEffect(() => {
-    const angle = sliderOpen ? 90 : 0;
-    concealerRef.current.style.transform = `rotate(${angle}deg)`;
-
     if (sliderOpen) {
       setTimeout(() => setLogoColor("light"), .3 * 1000);
     } else {
       setLogoColor("dark")
     }
   }, [sliderOpen])
-
+  
   return (
     <>
       <Head>
@@ -53,7 +39,7 @@ export default function Home() {
           </div>
         </div>
         <img src="/assets/sidebar.svg" alt="" ref={sidebarRef} />
-        <div className={styles.concealer} ref={concealerRef}></div>
+        <Concealer open={sliderOpen} sidebarRef={sidebarRef} />
       </main>
     </>
   )
