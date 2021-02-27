@@ -12,6 +12,7 @@ export default function Home() {
   const width = useWindowWidth();
 
   const [sliderOpen, setSliderOpen] = useState<boolean>(false);
+  const [logoColor, setLogoColor] = useState<"light"|"dark">("dark");
   const sidebarRef = useRef<HTMLImageElement>(null!)
   const concealerRef= useRef<HTMLDivElement>(null!)
 
@@ -28,6 +29,12 @@ export default function Home() {
   useEffect(() => {
     const angle = sliderOpen ? 90 : 0;
     concealerRef.current.style.transform = `rotate(${angle}deg)`;
+
+    if (sliderOpen) {
+      setTimeout(() => setLogoColor("light"), .3 * 1000);
+    } else {
+      setLogoColor("dark")
+    }
   }, [sliderOpen])
 
   return (
@@ -36,7 +43,7 @@ export default function Home() {
         <title>Barnabás Kiss</title>
       </Head>
       
-      <Nav logoStyle="dark" hamburgerSyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
+      <Nav logoStyle={logoColor} hamburgerSyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
       <main className={styles.main}>
         <div className={styles.content}>
           <h1>I'm <span>Barnabás Kiss</span>, a full-stack<br />software engineer and student</h1>
