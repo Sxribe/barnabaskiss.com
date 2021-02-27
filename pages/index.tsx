@@ -7,19 +7,23 @@ import Nav from "../components/nav/nav";
 import styles from "../styles/index.module.scss";
 import useWindowWidth from "../hooks/useWindowWidth";
 import Concealer from "../components/concealer/concealer";
+import NavCover from "../components/navcover/navcover";
 
 export default function Home() {
   const width = useWindowWidth();
 
-  const [sliderOpen, setSliderOpen] = useState<boolean>(false);
+  const [sliderOpen, setSliderOpen] = useState<boolean>(true);
+  const [navCoverOpen, setNavCoverOpen] = useState<boolean>(true);
   const [logoColor, setLogoColor] = useState<"light"|"dark">("dark");
   const sidebarRef = useRef<HTMLImageElement>(null!)
 
   useEffect(() => {
     if (sliderOpen) {
       setTimeout(() => setLogoColor("light"), .3 * 1000);
+      setTimeout(() => setNavCoverOpen(true), .4 * 1000);
     } else {
       setLogoColor("dark")
+      setNavCoverOpen(false);
     }
   }, [sliderOpen])
   
@@ -30,6 +34,7 @@ export default function Home() {
       </Head>
       
       <Nav logoStyle={logoColor} hamburgerSyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
+      <NavCover open={navCoverOpen} />
       <main className={styles.main}>
         <div className={styles.content}>
           <h1>I'm <span>Barnabás Kiss</span>, a full-stack<br />software engineer and student</h1>

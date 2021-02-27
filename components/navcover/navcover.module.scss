@@ -1,0 +1,33 @@
+.navcover {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
+  top: 160px;
+  height: calc(100vh - 160px);
+
+  .internal {
+    position: absolute;
+    top: 0;
+    right: 50px;
+    bottom: 50px;
+    left: 50px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5%;
+
+    a {
+      font-size: 5em;
+      font-family: "Gilroy";
+      font-weight: bold;
+      color: #FFFFFF;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
