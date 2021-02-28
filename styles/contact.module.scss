@@ -1,0 +1,115 @@
+.parent {
+  background-color: #2A5C70;
+  height: 100vh;
+  width: 100%;
+}
+
+.inner {
+  position: absolute;
+  top: 160px;
+  bottom: 0;
+  left: 50px;
+  right: 50px;
+
+  display: flex;
+  flex-direction: column;
+
+  .toptext {
+    color: #FFF;
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    h2 {
+      margin: 0 0 40px 0;
+      font-size: 1em;
+      font-weight: normal;
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+
+    .left, .right {
+      flex: 1;
+    }
+
+    .left {
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        input, textarea {
+          width: 60%;
+          min-height: 25px;
+          margin: 5px 0;
+          background: #2A5C70;
+          background: #2a5c7000;
+
+          border: 2px solid white;
+          margin-left: 2px;
+
+          &::after {
+            content: attr(data-name);
+
+            position: absolute;
+            left: 5;
+            top: 0;
+
+            background: red;
+            width: 100%;
+            height: 20px;
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+
+      p {
+        margin: 0;
+        text-align: right;
+        color: #FFFFFF;
+
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      p {
+        color: #FFF;
+        background: #2A5C70;
+        z-index: 2;
+        padding: 5px 0;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-color: #FFFFFF;
+
+        height: 30%;
+        width: 2px;
+        left: calc(50% - 1px);
+      }
+    }
+  }
+}
