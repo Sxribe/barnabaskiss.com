@@ -3,7 +3,7 @@ import styles from "./nav.module.scss"
 interface NavProps {
   logoStyle: "light" | "dark";
   hamburgerSyle: "light" | "dark";
-  hamburgerPressed: ((event: React.MouseEvent<HTMLImageElement>) => void) | undefined;
+  hamburgerPressed?: ((event: React.MouseEvent<HTMLImageElement>) => void);
 }
 
 export default function Nav(props: NavProps) {
