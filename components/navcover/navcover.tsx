@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import styles from "./navcover.module.scss";
 import { motion, Variants } from "framer-motion";
 
@@ -32,22 +33,33 @@ const item: Variants = {
 }
 
 export default function NavCover({ open }: NavCoverProps) {
+  const router = useRouter();
+
   const coverRef = useRef<HTMLDivElement>(null!);
+  const [transitioning, setTransitioning] = useState<boolean>(false);
+
+  function gotoPage(e: React.MouseEvent<HTMLAnchorElement>) {
+    const attr = (e.target as HTMLAnchorElement).getAttribute("data-href")
+    setTransitioning(true);
+    setTimeout(() => {
+      router.push(attr as string);
+    }, 210);
+  }
 
   if (!open) return null;
   return (
-    <div className={styles.navcover} ref={coverRef}>
+    <motion.div className={styles.navcover} ref={coverRef} animate={transitioning ? {opacity: 0, transition: { duration: .2 }} : undefined}>
       <motion.div
         className={styles.internal}
         variants={container}
         initial="hidden"
         animate="show"
       >
-        <motion.a href="#" variants={item}>HOME</motion.a>
-        <motion.a href="#" variants={item}>ABOUT ME</motion.a>
-        <motion.a href="#" variants={item}>PORTFOLIO</motion.a>
-        <motion.a href="#" variants={item}>CONTACT</motion.a>
+        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/"         >HOME</motion.a>
+        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/about"    >ABOUT ME</motion.a>
+        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/portfolio">PORTFOLIO</motion.a>
+        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/contact"  >CONTACT</motion.a>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }

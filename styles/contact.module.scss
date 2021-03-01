@@ -48,25 +48,47 @@
         align-items: flex-start;
 
         input, textarea {
-          width: 60%;
-          min-height: 25px;
-          margin: 5px 0;
           background: #2A5C70;
           background: #2a5c7000;
 
+          color: #FFFFFF;
+
+          padding: 0 8px;
+          padding-top: 5px;
+
+          width: 100%;
+          height: 25px;
+          
           border: 2px solid white;
           margin-left: 2px;
+        }
+
+        textarea {
+          height: 70px !important;
+          padding-top: 8px !important;
+          resize: none;
+        }
+
+        .inp_container {
+          position: relative;
+
+          width: 60%;
+          min-height: 25px;
+          margin: 5px 0;
 
           &::after {
             content: attr(data-name);
 
-            position: absolute;
-            left: 5;
-            top: 0;
+            font-size: .8em;
+            font-weight: bold;
+            color: #FFFFFF;
 
-            background: red;
-            width: 100%;
-            height: 20px;
+            position: absolute;
+            top: -.45em;
+            left: .8em;
+            padding: 0 2px;
+
+            background-color: #2A5C70;
           }
         }
       }
