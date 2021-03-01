@@ -5,6 +5,7 @@ import styles from "../styles/contact.module.scss";
 import { motion, Variants } from "framer-motion";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import NavCover from "../components/navcover/navcover";
 
 const introAnimation: Variants = {
   hidden: {
@@ -25,6 +26,7 @@ export default function Contact() {
 
   const router = useRouter();
   const [transitioning, setTransitioning] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState<boolean>(false);
 
   function transitionOut() {
     setTransitioning(true);
@@ -33,13 +35,24 @@ export default function Contact() {
     }, 200);
   }
 
+  function toggleNav() {
+    if (navOpen) {
+      setNavOpen(false);
+      setTimeout(() => setTransitioning(false), 200);
+    } else {
+      setTransitioning(true);
+      setTimeout(() => setNavOpen(true), 200);
+    }
+  }
+  
   return (
     <div className={styles.parent}>
       <Head>
         <title>Barnabas Kiss | Contact</title>
       </Head>
 
-      <Nav logoStyle="light" hamburgerSyle="light" backDisplayed={true} backPressed={transitionOut} />
+      <Nav logoStyle="light" hamburgerSyle="light" hamburgerPressed={toggleNav} backDisplayed={true} backPressed={transitionOut} />
+      <NavCover open={navOpen} />
 
       <motion.main className={styles.inner} variants={introAnimation} initial="hidden" animate={transitioning ? "hidden" : "show"}>
         <div className={styles.toptext}>
