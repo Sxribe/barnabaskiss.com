@@ -4,21 +4,18 @@ import DarkButton from "../components/darkbutton/darkbutton";
 import LightButton from "../components/lightbutton/lightbutton";
 import Nav from "../components/nav/nav";
 import styles from "../styles/index.module.scss";
-import useWindowWidth from "../hooks/useWindowWidth";
 import Concealer from "../components/concealer/concealer";
 import NavCover from "../components/navcover/navcover";
 import { useRouter } from "next/router";
-import { finished } from "stream";
 
 export default function Home() {
   const router = useRouter();
-  const width = useWindowWidth();
 
-  const [transitioning, setTransitioning] = useState<boolean>(typeof router.query.transitioning !== undefined);
+  const [transitioning, setTransitioning] = useState<boolean>(router.query.transitioning !== undefined);
   const [sliderOpen, setSliderOpen] = useState<boolean>(transitioning);
   const [navCoverOpen, setNavCoverOpen] = useState<boolean>(false);
   const [logoColor, setLogoColor] = useState<"light"|"dark">(transitioning ? "light" : "dark");
-  const sidebarRef = useRef<HTMLImageElement>(null!)
+  const sidebarRef = useRef<HTMLImageElement>(null!);
 
   useEffect(() => {
     if (transitioning === false) {
@@ -62,7 +59,7 @@ export default function Home() {
           </div>
         </div>
         <img src="/assets/sidebar.svg" alt="" ref={sidebarRef} />
-        <Concealer open={sliderOpen || transitioning} sidebarRef={sidebarRef} startClosed={true} />
+        <Concealer open={sliderOpen || transitioning} sidebarRef={sidebarRef} startClosed={transitioning} />
       </main>
     </>
   )
