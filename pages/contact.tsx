@@ -29,8 +29,8 @@ export default function Contact() {
   function transitionOut() {
     setTransitioning(true);
     setTimeout(() => {
-      router.push("/?transitioning", "/")
-    }, 520);
+      router.push("/?transitioning")
+    }, 200);
   }
 
   return (

@@ -1,14 +1,12 @@
 .concealer {
-    position: absolute;
-    top: 0;
-    left: 98%;
-    width: 100vh;
-    height: 150vw;
-    background-color: #2A5C70;
-    z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 98%;
+  width: 100vh;
+  height: 150vw;
+  background-color: #2A5C70;
+  z-index: 5;
 
-    transition: transform .4s;
-
-    transform-origin: top left;
-    transform: rotate(0deg);
-  }
+  transition: transform .4s;
+  transform-origin: top left;
+}

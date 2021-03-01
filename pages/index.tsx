@@ -7,24 +7,43 @@ import styles from "../styles/index.module.scss";
 import useWindowWidth from "../hooks/useWindowWidth";
 import Concealer from "../components/concealer/concealer";
 import NavCover from "../components/navcover/navcover";
+import { useRouter } from "next/router";
+import { finished } from "stream";
 
 export default function Home() {
+  const router = useRouter();
   const width = useWindowWidth();
 
-  const [sliderOpen, setSliderOpen] = useState<boolean>(false);
+  const [transitioning, setTransitioning] = useState<boolean>(typeof router.query.transitioning !== undefined);
+  const [sliderOpen, setSliderOpen] = useState<boolean>(transitioning);
   const [navCoverOpen, setNavCoverOpen] = useState<boolean>(false);
-  const [logoColor, setLogoColor] = useState<"light"|"dark">("dark");
+  const [logoColor, setLogoColor] = useState<"light"|"dark">(transitioning ? "light" : "dark");
   const sidebarRef = useRef<HTMLImageElement>(null!)
 
   useEffect(() => {
-    if (sliderOpen) {
-      setTimeout(() => setLogoColor("light"), .3 * 1000);
-      setTimeout(() => setNavCoverOpen(true), .4 * 1000);
+    if (transitioning === false) {
+      if (sliderOpen) {
+        setTimeout(() => setLogoColor("light"), .3 * 1000);
+        setTimeout(() => setNavCoverOpen(true), .4 * 1000);
+      } else {
+        setLogoColor("dark")
+        setNavCoverOpen(false);
+      }
     } else {
-      setLogoColor("dark")
-      setNavCoverOpen(false);
+      setSliderOpen(false);
+      setTimeout(() => {
+        setTransitioning(false);
+        setLogoColor("dark");
+        router.push("/");
+      }, .4 * 1000);
     }
   }, [sliderOpen])
+
+  function gotoContact() {
+    setTransitioning(true);
+    setTimeout(() => setLogoColor("light"), .3 * 1000);
+    setTimeout(() => router.push("/contact"), .4 * 1000);
+  }
   
   return (
     <>
@@ -38,12 +57,12 @@ export default function Home() {
         <div className={styles.content}>
           <h1>I'm <span>Barnabás Kiss</span>, a full-stack<br />software engineer and student</h1>
           <div className={styles.buttons}>
-            <DarkButton>Get in touch</DarkButton>
+            <DarkButton onClick={gotoContact}>Get in touch</DarkButton>
             <LightButton>About Me</LightButton>
           </div>
         </div>
         <img src="/assets/sidebar.svg" alt="" ref={sidebarRef} />
-        <Concealer open={sliderOpen} sidebarRef={sidebarRef} />
+        <Concealer open={sliderOpen || transitioning} sidebarRef={sidebarRef} startClosed={true} />
       </main>
     </>
   )

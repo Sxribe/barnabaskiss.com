@@ -4,7 +4,8 @@ import styles from "./concealer.module.scss";
 
 interface ConcealerProps {
   open: boolean;
-  sidebarRef: React.MutableRefObject<HTMLImageElement>
+  sidebarRef: React.MutableRefObject<HTMLImageElement>;
+  startClosed: boolean;
 }
 
 export default function Concealer(props: ConcealerProps) {
@@ -27,6 +28,6 @@ export default function Concealer(props: ConcealerProps) {
   }, [props.open])
 
   return (
-    <div className={styles.concealer} ref={mainRef}></div>
+    <div className={styles.concealer} ref={mainRef} style={props.startClosed ? {transform: "rotate(90deg)"} : {}}></div>
   );
 }
