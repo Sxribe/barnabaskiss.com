@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Barnabás Kiss</title>
+        <title>Barnabás Kiss | Portfolio</title>
       </Head>
       
       <Nav logoStyle={logoColor} hamburgerSyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
