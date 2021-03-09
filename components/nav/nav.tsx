@@ -1,4 +1,5 @@
 import styles from "./nav.module.scss"
+import { useRouter } from "next/router";
 import { motion, Variants } from "framer-motion";
 
 interface NavProps {
@@ -25,6 +26,7 @@ const aFadeIn: Variants = {
 
 export default function Nav(props: NavProps) {
   const { logoStyle, hamburgerSyle } = props;
+  const router = useRouter();
 
   function clicked(e: React.MouseEvent<HTMLImageElement>) {
     if (props.hamburgerPressed !== undefined) {
@@ -38,12 +40,17 @@ export default function Nav(props: NavProps) {
     }
   }
 
+  function homeClicked() {
+    router.push("/")
+  }
+
   return (
     <nav className={styles.nav} style={props.abs ? {position: "absolute"} : {}}>
       <div className={styles.left}>
         <img
           src={logoStyle === "light" ? "/logo-light.svg" : "/logo-dark.svg"}
           alt="Barnabás Kiss"
+          onClick={homeClicked}
         />
       </div>
       <div className={styles.right}>
