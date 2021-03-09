@@ -11,7 +11,7 @@ export default function About() {
         <title>Barnabas Kiss | About Me</title>
       </Head>
 
-      <Nav logoStyle="dark" hamburgerStyle="dark" />
+      <Nav logoStyle="dark" hamburgerStyle="dark" abs/>
 
       <div className={styles.parent}>
         <div className={styles.header}>
