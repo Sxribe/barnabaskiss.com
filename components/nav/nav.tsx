@@ -9,6 +9,7 @@ interface NavProps {
   backDisplayed?: boolean;
   backPressed?: ((event: React.MouseEvent<HTMLAnchorElement>) => void);
   abs?: boolean;
+  fix?: boolean;
 }
 
 const aFadeIn: Variants = {
@@ -45,7 +46,9 @@ export default function Nav(props: NavProps) {
   }
 
   return (
-    <nav className={styles.nav} style={props.abs ? {position: "absolute"} : {}}>
+    <nav className={styles.nav} style={{
+      position: props.fix ? "fixed" : props.abs ? "absolute" : "relative"
+    }}>
       <div className={styles.left}>
         <img
           src={logoStyle === "light" ? "/logo-light.svg" : "/logo-dark.svg"}

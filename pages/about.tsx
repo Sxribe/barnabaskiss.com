@@ -1,24 +1,75 @@
 import { useState, useRef } from "react";
+import { motion, Variants } from "framer-motion";
+import { useRouter } from "next/router";
 import styles from "../styles/about.module.scss"
 import Head from "next/head";
 import Nav from "../components/nav/nav";
-import DarkButton from "../components/darkbutton/darkbutton";
+import NavCover from "../components/navcover/navcover";
+
+const concealerVariants: Variants = {
+  hidden: {
+    y: "100%",
+  },
+
+  show: {
+    y: 0,
+
+    transition: {
+      duration: .1,
+    }
+  }
+}
 
 export default function About() {
+  const router = useRouter();
+
+  const [navConcealerOpen, setNavConcealerOpen] = useState<boolean>(false);
+  const [navStyle, setNavStyle] = useState<"light"|"dark">("dark");
+  const [concealerState, setConcealerState] = useState<"show"|"hidden">("hidden");
+
+  const transitioning = router.query.transitioning !== undefined;
+
+  function toggleNav() {
+    if (concealerState == "hidden") {
+      setConcealerState("show");
+      setTimeout(() => {
+        setNavStyle("light");
+      }, .2)
+      setTimeout(() => {
+        setNavConcealerOpen(true);
+      }, .4)
+    } else {
+      setConcealerState("hidden");
+      setNavStyle("dark")
+      setTimeout(() => {
+        setNavConcealerOpen(false);
+      }, .4)
+    }
+  }
+
   return (
     <>
       <Head>
         <title>Barnabas Kiss | About Me</title>
       </Head>
 
-      <Nav logoStyle="dark" hamburgerStyle="dark" abs/>
+      <Nav logoStyle={navStyle} hamburgerStyle={navStyle} fix={navStyle === "light"} hamburgerPressed={toggleNav} abs/>
+
+      {transitioning && <motion.div
+        className={styles.navConcealer}
+        variants={concealerVariants}
+        initial="show"
+        animate={concealerState}
+        transition={{ duration: .3 }}
+      />}
+      <NavCover open={navConcealerOpen} />
 
       <div className={styles.parent}>
         <div className={styles.header}>
           <h1>About Me</h1>
           <h2>
             I’m a full-stack freelance software engineer.
-            I build high-quality software for a variety of use-cases.
+            I build high-quality software for a variety of usecases.
             I’ve worked with many technologies over my software development experience.
             Fluent in English, Hungarian and German.
           </h2>

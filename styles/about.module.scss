@@ -1,3 +1,13 @@
+.navConcealer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2A5C70;
+  z-index: 5;
+}
+
 .parent {
   margin: 50px;
   color: #2A5C70;

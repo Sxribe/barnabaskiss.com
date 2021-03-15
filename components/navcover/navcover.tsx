@@ -56,7 +56,7 @@ export default function NavCover({ open }: NavCoverProps) {
         animate="show"
       >
         <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/?transitioning"         >HOME</motion.a>
-        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/about"                  >ABOUT ME</motion.a>
+        <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/about?transitioning"                  >ABOUT ME</motion.a>
         <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/portfolio?transitioning">PORTFOLIO</motion.a>
         <motion.a variants={item} onClick={e => gotoPage(e)} data-href="/contact"                >CONTACT</motion.a>
       </motion.div>
