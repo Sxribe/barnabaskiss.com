@@ -48,7 +48,7 @@ export default function Home() {
         <title>Barnabás Kiss</title>
       </Head>
       
-      <Nav logoStyle={logoColor} hamburgerSyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
+      <Nav logoStyle={logoColor} hamburgerStyle="light" hamburgerPressed={() => setSliderOpen(!sliderOpen)}/>
       <NavCover open={navCoverOpen} />
       <main className={styles.main}>
         <div className={styles.content}>

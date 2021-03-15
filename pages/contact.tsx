@@ -51,7 +51,7 @@ export default function Contact() {
         <title>Barnabas Kiss | Contact</title>
       </Head>
 
-      <Nav logoStyle="light" hamburgerSyle="light" hamburgerPressed={toggleNav} backDisplayed={true} backPressed={transitionOut} />
+      <Nav logoStyle="light" hamburgerStyle="light" hamburgerPressed={toggleNav} backDisplayed={true} backPressed={transitionOut} />
       <NavCover open={navOpen} />
 
       <motion.main className={styles.inner} variants={introAnimation} initial="hidden" animate={transitioning ? "hidden" : "show"}>

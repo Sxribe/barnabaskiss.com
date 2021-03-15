@@ -4,7 +4,7 @@ import { motion, Variants } from "framer-motion";
 
 interface NavProps {
   logoStyle: "light" | "dark";
-  hamburgerSyle: "light" | "dark";
+  hamburgerStyle: "light" | "dark";
   hamburgerPressed?: ((event: React.MouseEvent<HTMLImageElement>) => void);
   backDisplayed?: boolean;
   backPressed?: ((event: React.MouseEvent<HTMLAnchorElement>) => void);
@@ -25,7 +25,7 @@ const aFadeIn: Variants = {
 }
 
 export default function Nav(props: NavProps) {
-  const { logoStyle, hamburgerSyle } = props;
+  const { logoStyle, hamburgerStyle } = props;
   const router = useRouter();
 
   function clicked(e: React.MouseEvent<HTMLImageElement>) {
@@ -56,7 +56,7 @@ export default function Nav(props: NavProps) {
       <div className={styles.right}>
         {props.backDisplayed && <motion.a variants={aFadeIn} initial="hide" animate="show" onClick={backClicked}>BACK</motion.a>}
         <img
-          src={hamburgerSyle === "light" ? "/assets/hamburger-light.svg" : "/assets/hamburger-dark.svg"}
+          src={hamburgerStyle === "light" ? "/assets/hamburger-light.svg" : "/assets/hamburger-dark.svg"}
           alt="Menu"
           onClick={clicked}
         />

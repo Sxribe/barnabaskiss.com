@@ -34,11 +34,18 @@
   }
 
   .content {
+    $outline: #2c96c1;
+
     display: flex;
     flex-direction: row;
 
     .left, .right {
       flex: 1;
+    }
+
+    button:active, button:focus {
+      outline: none;
+      border: 2px solid $outline;
     }
 
     .left {
@@ -61,6 +68,11 @@
           
           border: 2px solid white;
           margin-left: 2px;
+
+          &:focus, &:active {
+            outline: none;
+            border: 2px solid $outline;
+          }
         }
 
         textarea {
